@@ -1,4 +1,5 @@
 import datetime
+import json
 
 habits = {}
 
@@ -6,7 +7,9 @@ def add_habit(habit):
     """adds a new habit to the tracker."""
     if habit not in habits:
         habits[habit] = []
+        json.dump(habits, open("habits.json", "w"))
         print(f"Habit '{habit}' added!")
+
     else:
         print(f"Habit '{habit}' already exists.")
 
