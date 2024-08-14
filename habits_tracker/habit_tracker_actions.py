@@ -49,3 +49,15 @@ def save_habits():
     with open("habits.json", "w") as f:
         json.dump(habits, f)
 
+def delete_habit():
+    """Deletes a habit from the tracker"""
+    with open("habits.json", "r") as f:
+        habits = json.load(f)
+        for habit in habits:
+            del habits[habit]
+            save_habits()
+            print(f"Habit '{habit}' deleted!")
+        else:
+            print(f"Habit '{habit}' not found.")
+
+    
