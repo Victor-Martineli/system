@@ -1,15 +1,19 @@
 import datetime
 import json
 
-habits = {}
+# Load existing habits from a json if it dosen't exist load a a empty dictionary
+try:
+    with open("habits.json","r") as f:
+        habits = json.load(f)
+except FileNotFoundError:
+    habits = {}
 
 def add_habit(habit):
     """adds a new habit to the tracker."""
     if habit not in habits:
         habits[habit] = []
-        json.dump(habits, open("habits.json", "w"))
+        save_habits()
         print(f"Habit '{habit}' added!")
-
     else:
         print(f"Habit '{habit}' already exists.")
 
@@ -17,7 +21,7 @@ def mark_habit_done(habit):
     """ records that a habit was complet today."""
     if habit in habits:
         today = datetime.date.today().strftime("%Y-%m-%d")  
-        habits[habit].append(today)
+        save_habits()
         print(f" congratulations \nHabit '{habit}' was completed today.")
     else:
         print(f"Habit '{habit}' not found.")
@@ -39,4 +43,9 @@ def view_habit_progress(habit):
         print(f"  Completed on: {dates}")
     else:
         print(f"Habit '{habit}' not found.")
+
+def save_habits():
+    """Save the habits dictionary to json file"""
+    with open("habits.json", "w") as f:
+        json.dump(habits, f)
 
