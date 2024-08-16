@@ -10,8 +10,8 @@ def main(page: ft.Page):
         expand=True,
         spacing=10,
         padding=ft.padding.all(10),
-        horizontal=True
-        
+        horizontal=True,
+            
     )
     
 
