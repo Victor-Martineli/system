@@ -19,6 +19,9 @@ def create_new_player(player_name):
     if player_name not in player_data:
         player_data[player_name] = {
             "level": 1,
+            "hp": 100,
+            "mp": 100,
+            "job": "none",
             "experience": 0,
             "experience_to_next_level": 100,
             "strenght": 1,
@@ -26,6 +29,7 @@ def create_new_player(player_name):
             "agility": 1,
             "inteligence": 1,
             "remaining_points": 0,
+
         }
         save_player_data()
         print(f"Welcome '{player_name}'")
